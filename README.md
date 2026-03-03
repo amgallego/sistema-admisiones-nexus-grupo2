@@ -1,162 +1,51 @@
-README – Nexus
+# Nexus
 
-Descripción del Proyecto
+[Plataforma universitaria para la gestión digital de admisiones, oferta académica y control de matrículas]
 
-Este proyecto consiste en el desarrollo de una plataforma web universitaria que permite:
+## Introducción / Contexto
 
-Visualizar carreras disponibles
-Consultar información detallada de cada programa académico
-Realizar proceso de inscripción
-Gestionar solicitudes desde perfil administrativo
-Permitir al estudiante completar su proceso académico
-El sistema busca digitalizar y optimizar el flujo completo desde la exploración de la carrera hasta la admisión y matrícula.
+- **Descripción del problema:** Los procesos de inscripción y matrícula universitaria suelen estar fragmentados, generando procesos manuales lentos y falta de visibilidad para el aspirante sobre su estado de admisión.
+- **Justificación:** La digitalización de estos flujos mejora la experiencia del estudiante, centraliza la información para la administración y permite un control eficiente del crecimiento institucional.
+- **Dominio:** Gestión Académica y Procesos de Admisión Universitaria.
 
-Perfiles del Sistema
+## Objetivos
 
-1. Perfil Administrativo
-  Funcionalidades:
-    Visualizar listado de solicitudes.
-    Aprobar solicitudes.
-    Rechazar solicitudes.
-    Solicitar documentación adicional.
-    Consultar estado del aspirante.
+**Objetivo General** Diseñar e implementar una plataforma web que permita gestionar de manera eficiente el proceso de inscripción, admisión y matrícula de estudiantes, facilitando la interacción entre aspirantes, estudiantes y personal administrativo.
 
-2. Perfil Estudiante
-  Funcionalidades:
-    Iniciar sesión tras ser admitido.
-    Completar proceso de pago.
-    Seleccionar materias.
-    Elegir horario (en desarrollo).
-    Consultar estado de matrícula.
+**Objetivos Específicos** - Implementar un listado dinámico de carreras con visualización detallada de pensum y descripción.
+- Desarrollar un módulo de inscripción que permita el registro de aspirantes y la persistencia de sus datos.
+- Construir un panel administrativo para la gestión, aprobación y rechazo de solicitudes de ingreso.
+- Habilitar un portal de estudiante para que los usuarios admitidos inicien sesión y gestionen su proceso de matrícula inicial.
+- Establecer un sistema de autenticación y control de acceso basado en roles (Admin/Estudiante).
 
-Flujo General del Sistema:
+## Alcance del Proyecto (Scope)
 
-Usuario visita la página.
-Visualiza listado de carreras.
-Selecciona carrera → consulta descripción y pensum.
-Hace clic en Inscribirme.
-Completa formulario.
-Administrador gestiona solicitud.
-  Si es aprobado:
-    El estudiante inicia sesión. 
-    Selecciona materias.
+**Qué se ha desarrollado (Fase Actual):** - **Modelado de Datos:** Diseño e implementación del diagrama entidad-relación que soporta el sistema en **PostgreSQL**.
+- **Persistencia de Datos:** Configuración completa de la capa de acceso a datos mediante el **Repository Pattern** (JPA).
+- **Entidades de Dominio:** Creación de clases Java para Carreras, Usuarios (Roles) y Solicitudes de inscripción.
+- **Conectividad:** Configuración exitosa del `application.properties` para la comunicación con PostgresQL y validación de esquemas.
 
-Objetivo General
+**Qué NO se va a desarrollar en esta versión (Fuera de alcance):** - Interfaces de usuario finales (Frontend avanzado/Bootstrap).
+- Lógica de negocio para la generación de horarios o gestión de docentes.
+- Integración con pasarelas de pago externas.
+- Microservicios o despliegue automatizado en la nube (Cloud).
 
-Diseñar e implementar una plataforma web que permita gestionar de manera eficiente el proceso de inscripción, admisión y matrícula de estudiantes, facilitando la interacción entre aspirantes, estudiantes y personal administrativo.
+## Tecnologías y Herramientas (Tech Stack)
 
-Objetivos Específicos
+### Backend (Spring Boot 3.x / Java 17)
+**Dependencias principales:**
+- **Spring Data JPA**: Para la gestión de la persistencia y mapeo objeto-relacional (ORM).
+- **PostgreSQL Driver**: Conector oficial para la comunicación con la base de datos.
+- **Spring Web**: Para la creación de servicios RESTful (opcional/en progreso).
+- **Lombok**: Para la reducción de código repetitivo (Boilerplate) en las entidades.
 
-Mostrar un listado dinámico de carreras disponibles.
-Permitir consultar descripción y pensum de cada programa.
-Implementar formulario de inscripción básico.
-Gestionar solicitudes desde perfil administrativo.
-Permitir que el estudiante admitido:
-  Inicie sesión.
-  Seleccione materias y horarios (módulo en desarrollo).
+## Integrantes del Equipo
 
-Alcance del Proyecto
+| Nombre                | Rol principal            | Usuario GitHub |
+|-----------------------|--------------------------|------------|
+| David Quiroz Gonzalez | Líder Frontend / Backend | @Strikys12 |
+| Ana Marcela Gallego   | Frontend Lead            | @Amgallego |
+| Miguel Angel Muñoz    | Backend / Base de datos  | @MiguelM1004 |
+| Ana María Zapata      | UI Designer / QA         | @AnamZapa  |
 
-Definir las funcionalidades que serán desarrolladas dentro del proyecto y cuáles quedan fuera del alcance actual, con el fin de:
-
-  Evitar ambigüedades.
-  Controlar el crecimiento no planificado del sistema.
-  Establecer expectativas claras.
-  Facilitar futuras fases de evolución.
-
-Dentro del alcance:
-    Página principal Pública (Exploración de Carreras)
-    Listado dinámico de carreras disponibles.
-    Vista detallada por carrera que incluya:
-      Descripción del programa.
-      Pensum académico.
-      Botón de inscripción por carrera.
-      Formulario básico de inscripción con:
-      Datos personales.
-      Selección de carrera.
-      Validaciones básicas de campos.
-      Registro de solicitud en base de datos.
-      Mensaje de confirmación de envío.
-
-Módulo Administrativo:
-
-Inicio de sesión para perfil administrativo.
-  Visualización de listado de solicitudes.
-  Filtros por:
-  Estado (Pendiente, Aprobado, Rechazado).
-  Carrera.
-  Visualización de detalle de cada aspirante.
-Acciones sobre solicitudes:
-  Aprobar, Rechazar.
-  Solicitar documentación adicional.
-Cambio automático de estado según acción realizada.
-Dashboard básico con:
-  Total de solicitudes.
-  Cantidad por estado.
-  Solicitudes por carrera.
-
-Modulo Estudiante:
-  Inicio de sesión para estudiantes admitidos.
-  Visualización de estado de admisión.
-  Vista preliminar para selección de materias (estructura base).
-  Persistencia de datos en base de datos.
-
-Seguridad y Gestión de Sesiones
-  Autenticación básica por roles (Administrador / Estudiante).
-  Control de acceso por perfil.
-  Protección de rutas internas.
-  Manejo de sesiones activas.
-
-Base de Datos:
-
-Diseño de modelo relacional que incluya:
-  Usuarios.
-  Roles.
-  Carreras.
-  Solicitudes.
-  Estados.
-  Relaciones entre entidades.
-  Integridad referencial.
-
-
-Fuera de alcance:
-
-  Integraciones Externas
-  Integración con sistemas financieros institucionales.
-  Integración con sistemas académicos externos.
-  Funcionalidades Académicas Avanzadas
-  Generación automática de horarios optimizados.
-  Asignación automática de materias según prerrequisitos.
-  Gestión completa de docentes.
-  Sistema de notas y evaluaciones.
-  Expedición de certificados académicos.
-
-Reportes financieros detallados:
-
-  Gestión presupuestal.
-  Gestión de nómina.
-  CRM institucional completo.
-
-Características Técnicas Avanzadas:
-
-  Arquitectura de microservicios.
-  Aplicación móvil.
-  Inteligencia artificial para predicción de admisión.
-  Alta disponibilidad en la nube.
-  Autenticación multifactor.
-  Cifrado avanzado de datos sensibles.
-
-Tecnologías
-
-Frontend: HTML, CSS, Bootstrap, JavaScript
-Backend: JavaScript
-Servidor: Spring Boot
-Base de datos: SQL Server, Phyton
-Control de versiones: Git
-
-Integrantes:
-
-Ana Marcela Gallego | rol | 
-David Quiroz | rol | 
-Miguel Angel Muñoz | rol | @MiguelM1004
-Ana María Zapata | rol | @AnamZapa
+---
