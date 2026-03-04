@@ -60,8 +60,9 @@ git clone https://github.com/Strikys12/sistema-admisiones-nexus-grupo2.git
 ```
 
 ### 2. Abrir el directorio
-
+```bash
 cd sistema-admisiones-nexus-grupo2
+```
 
 
 ### 3. Configurar base de datos en ``src/main/resources/application-dev.properties``
@@ -69,6 +70,7 @@ cd sistema-admisiones-nexus-grupo2
 
 **Configuración para PostgreSQL (Prisma Cloud):**
 # Configuración de la conexión
+```properties
 spring.datasource.url=jdbc:postgresql://db.prisma.io:5432/postgres?sslmode=require
 spring.datasource.username=afbe3660994f8300a5512274c39fad928208254ccd7406e9207217deb1a01ee6
 spring.datasource.password=sk_NpmOqthHk6IVj2Ey4t79K
@@ -77,6 +79,7 @@ spring.datasource.driver-class-name=org.postgresql.Driver
 # Configuración de JPA / Hibernate
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
+```
 
 
 ### 4. Ejecutar la aplicación
