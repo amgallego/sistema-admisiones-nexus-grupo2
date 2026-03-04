@@ -1,6 +1,3 @@
-Aquí tienes el README.md completo, siguiendo exactamente la estructura del formato que me enviaste e incorporando toda la información técnica, los integrantes y la configuración de la base de datos que hemos trabajado.
-
-Markdown
 # Nexus
 
 Plataforma universitaria para la gestión digital de admisiones, oferta académica y control de matrículas.
@@ -23,22 +20,22 @@ Plataforma universitaria para la gestión digital de admisiones, oferta académi
 
 ## Alcance del Proyecto (Scope)
 
-**Qué se va a desarrollar:** - **Modelado de Datos:** Diseño e implementación del diagrama entidad-relación en PostgreSQL.
-- **Persistencia de Datos:** Configuración de la capa de acceso a datos mediante el Repository Pattern (JPA).
-- **Entidades de Dominio:** Creación de clases Java para `Curso`, `Usuario`, `UsuarioAdministrativo` y `Request` (Solicitudes).
-- **Relaciones Bidireccionales:** Vinculación de usuarios con sus cursos y solicitudes de inscripción.
+**Qué se va a desarrollar:**
+- **Módulo de Oferta Académica:** Visualización y gestión de la lista de carreras y cursos disponibles.
+- **Sistema de Registro de Aspirantes:** Interfaz para que nuevos usuarios creen su perfil y carguen datos personales.
+- **Módulo de Gestión de Solicitudes:** Funcionalidad para que el administrativo apruebe o rechace inscripciones.
+- **Portal de Admisiones:** Panel de consulta de estado de trámite para el estudiante.
 
-**Qué NO se va a desarrollar en esta versión (fuera de alcance):** - Interfaces de usuario finales (Frontend avanzado/Bootstrap).
-- Lógica de negocio para la generación de horarios o gestión de docentes.
-- Integración con pasarelas de pago externas.
-- Microservicios o despliegue automatizado en la nube (Cloud).
+**Qué NO se va a desarrollar en esta versión (fuera de alcance):**
+- Lógica de negocio para la generación automática de horarios o gestión de nómina de docentes.
+- Integración con pasarelas de pago externas para el recaudo de matrículas.
 
 ## Tecnologías y Herramientas (Tech Stack)
 
-- **Backend**: Spring Boot 3.x, Java 17, Spring Data JPA, Hibernate.
-- **Frontend**: [Pendiente de definición según el Tech Stack inicial].
-- **Base de datos**: PostgreSQL (Prisma Cloud en producción / DBeaver para gestión).
-- **Otras herramientas**: Git, GitHub, Lombok, Postman.
+- **Backend**: Spring Boot 3.4.1, Java 17, Spring Data JPA.
+- **Frontend**: React 18 (Vite).
+- **Base de datos**: PostgreSQL (Producción) y H2 (Desarrollo).
+- **Otras herramientas**: Git, GitHub, Lombok, DBeaver, Maven.
 
 ## Integrantes del Equipo
 
@@ -49,37 +46,42 @@ Plataforma universitaria para la gestión digital de admisiones, oferta académi
 | Miguel Angel Muñoz      | Frontend Lead              | @MiguelM1004       |
 | Ana María Zapata        | Líder Frontend/Backend     | @AnamZapa          |
 
-
-
 ## Diagrama de Clases del Dominio (v1)
 
 ![Diagrama de Dominio v1](docs/diagrama-dominio-v1.png)  
-*Diagrama inicial del modelo de dominio – versión 1. Se han implementado relaciones bidireccionales entre Usuario, Curso y Request utilizando `@ToString.Exclude` para evitar recursividad.*
-
-
+*Diagrama inicial del modelo de dominio – versión 1. Muestra la relación entre Usuarios, Cursos y Solicitudes (Requests).*
 
 ## Instrucciones de Instalación y Ejecución (para desarrolladores)
 
 ### 1. Clonar el repositorio
 
+```bash
+git clone https://github.com/Strikys12/sistema-admisiones-nexus-grupo2.git 
+```
 
-git clone https://github.com/AnamZapa/sistema-admisiones-nexus-grupo2.git
-
-### 2. Entrar al directorio
-
+### 2. Abrir el directorio
 
 cd sistema-admisiones-nexus-grupo2
 
-### 3. Configurar base de datos en `src/main/resources/application.properties
+
+### 3. Configurar base de datos en ``src/main/resources/application-dev.properties``
 
 
 **Configuración para PostgreSQL (Prisma Cloud):**
-properties
+# Configuración de la conexión
 spring.datasource.url=jdbc:postgresql://db.prisma.io:5432/postgres?sslmode=require
 spring.datasource.username=afbe3660994f8300a5512274c39fad928208254ccd7406e9207217deb1a01ee6
 spring.datasource.password=sk_NpmOqthHk6IVj2Ey4t79K
 spring.datasource.driver-class-name=org.postgresql.Driver
+
+# Configuración de JPA / Hibernate
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 
-### 4.  Ejecutar desde el IDE: Run -> NexusApplication.java
+
+### 4. Ejecutar la aplicación
+**Desde linea de comandos**
+./mvnw spring-boot:run
+
+**O desde IDE:**
+Localizar la clase NexusApplication.java y ejecutarla como Java Application.
