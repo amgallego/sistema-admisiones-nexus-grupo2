@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder // Añadido para mantener consistencia con Curso
+@Builder 
 @ToString
 
 public class Usuario {
