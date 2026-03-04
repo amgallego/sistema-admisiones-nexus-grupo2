@@ -25,8 +25,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "Cursos")
-@ToString(exclude = "usuario") // Importantísimo para evitar bucles infinitos
+@Table(name = "cursos")
+@ToString
 
 public class Curso {
 
@@ -58,6 +58,7 @@ public class Curso {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", nullable = false)
+    @ToString.Exclude
     private Usuario usuario;
 
 
