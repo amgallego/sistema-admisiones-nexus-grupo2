@@ -56,7 +56,7 @@ Plataforma universitaria para la gestión digital de admisiones, oferta académi
 ### 1. Clonar el repositorio
 
 ```bash
-git clone [https://github.com/Strikys12/sistema-admisiones-nexus-grupo2](https://github.com/Strikys12/sistema-admisiones-nexus-grupo2.git)
+git clone https://github.com/Strikys12/sistema-admisiones-nexus-grupo2.git
 ```
 
 ### 2. Abrir el directorio
