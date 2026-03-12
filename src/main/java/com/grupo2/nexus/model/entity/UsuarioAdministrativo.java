@@ -5,6 +5,8 @@ import com.grupo2.nexus.model.embeddable.DatosPersonales;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,6 +17,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import com.grupo2.nexus.model.enums.Activo;
 
 @Entity
 @Table(name = "usuarios_administrativos")
@@ -33,7 +36,8 @@ public class UsuarioAdministrativo {
     @Embedded
     private DatosPersonales datosPersonales;
 
-
+    @Enumerated(EnumType.STRING)
+    private Activo activo;
 
     @Column(nullable = false, length = 100)
     private String apellido;
