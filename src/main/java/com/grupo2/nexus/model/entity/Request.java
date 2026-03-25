@@ -1,6 +1,8 @@
 package com.grupo2.nexus.model.entity;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+import com.grupo2.nexus.model.enums.EstadoSolicitud;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -76,6 +78,21 @@ public class Request {
 
     @Column(name = "segundo_programa")
     private String segundoPrograma;
+
+    @Column(name = "cupos_maximos")
+    private Integer cuposMaximos;
+
+    @Column(name = "cupos_disponibles")
+    private Integer cuposDisponibles;
+
+    @Enumerated(EnumType.STRING)
+    private EstadoSolicitud estadoSolicitud;
+
+    @Column(name = "fecha_creacion", updatable = false)
+    private LocalDateTime fechaCreacion;
+
+
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
