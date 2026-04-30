@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.grupo2.nexus.model.dto.UsuarioDto;
-import com.grupo2.nexus.model.entity.Usuario;
+import com.grupo2.nexus.model.dto.UsuarioCreateDto;
+import com.grupo2.nexus.model.dto.UsuarioDto; //  Importamos el nuevo DTO
 import com.grupo2.nexus.service.UsuarioService;
 
 import lombok.RequiredArgsConstructor;
@@ -37,21 +37,19 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<UsuarioDto> create(@RequestBody Usuario usuario) {
-        // El Service ya se encarga de validar el email y poner el rol por defecto
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(usuario));
+    // ACTUALIZADO: recibimos UsuarioCreateDto en lugar de Usuario
+    public ResponseEntity<UsuarioDto> create(@RequestBody UsuarioCreateDto dto) {
+        // El Service ahora recibe el DTO, lo mapea y guarda
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(dto));
     }
 
     @PutMapping("/{id}")
+    // ACTUALIZADO: usamos el DTO para las actualizaciones
     public ResponseEntity<UsuarioDto> update(
             @PathVariable Long id,
-            @RequestBody Usuario usuario) {
+            @RequestBody UsuarioCreateDto dto) {
 
-        // IMPORTANTE: Le decimos al objeto que su ID es el que viene en la URL
-        // Esto evita que alguien intente actualizar el usuario 5 mandando el ID 10 en el JSON.
-        usuario.setId(id);
-
-        return ResponseEntity.ok(usuarioService.update(id, usuario));
+        return ResponseEntity.ok(usuarioService.update(id, dto));
     }
 
     @DeleteMapping("/{id}")
