@@ -1,12 +1,13 @@
 package com.grupo2.nexus.service;
 import com.grupo2.nexus.model.dto.CursoDto;
 import com.grupo2.nexus.model.entity.Curso;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import lombok.RequiredArgsConstructor;  
+import lombok.RequiredArgsConstructor;
 import com.grupo2.nexus.repository.CursoRepository;
 
 @Service
@@ -15,12 +16,10 @@ public class CursoService {
 
     private final CursoRepository cursoRepository;
 
-      public List<CursoDto> findAll() {
-        return cursoRepository.findAll().stream()
-                .map(x -> this.toResponse(x))
-                .toList();
+    public Page<CursoDto> findAll(Pageable pageable) {
+        return cursoRepository.findAll(pageable)
+                .map(this::toResponse);
     }
-
 
     public CursoDto findById(Long id) {
         return cursoRepository.findById(id)
@@ -61,12 +60,18 @@ public class CursoService {
         cursoRepository.save(curso);
     }
 
-    public CursoDto update(Curso cursoActualizado) {
-        Curso cursoExistente = cursoRepository.findById(cursoActualizado.getId())
-                .orElseThrow(() -> new RuntimeException("Curso no encontrado con ID: " + cursoActualizado.getId()));
+    public CursoDto update(Long id, Curso cursoActualizado) {
+        Curso cursoExistente = findEntityById(id);
         cursoExistente.setNombre(cursoActualizado.getNombre());
         cursoExistente.setDescripcion(cursoActualizado.getDescripcion());
-        cursoExistente.setCuposDisponibles(cursoActualizado.getCuposDisponibles()); // ¡Importante!
+        cursoExistente.setCategoria(cursoActualizado.getCategoria());
+        cursoExistente.setDuracionHoras(cursoActualizado.getDuracionHoras());
+        cursoExistente.setCuposMaximos(cursoActualizado.getCuposMaximos());
+        cursoExistente.setCuposDisponibles(cursoActualizado.getCuposDisponibles());
+        cursoExistente.setPrecio(cursoActualizado.getPrecio());
+        cursoExistente.setInstructor(cursoActualizado.getInstructor());
+        cursoExistente.setFechaInicio(cursoActualizado.getFechaInicio());
+        cursoExistente.setActivo(cursoActualizado.getActivo());
         return toResponse(cursoRepository.save(cursoExistente));
       }
 
