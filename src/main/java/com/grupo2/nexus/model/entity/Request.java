@@ -22,23 +22,10 @@ public class Request {
 
     // Identificación
     @Column(name = "tipo_doc", nullable = false, length = 10)
-    private String tipoDoc;
+    private String tipodoc;
 
     @Column(name = "numero_doc", nullable = false, unique = true, length = 20)
     private String numeroDoc;
-
-    @Column(name = "fecha_expedicion")
-    private LocalDate fechaExpedicion;
-
-    // Ubicación de Expedición
-    @Column(name = "pais_expedicion")
-    private String paisExpedicion;
-
-    @Column(name = "departamento_expedicion")
-    private String departamentoExpedicion;
-
-    @Column(name = "ciudad_expedicion")
-    private String ciudadExpedicion;
 
     // Datos Personales
     @Column(nullable = false, length = 100)
@@ -47,27 +34,11 @@ public class Request {
     @Column(nullable = false, length = 100)
     private String apellidos;
 
-    private String genero;
-
-    @Column(name = "estado_civil")
-    private String estadoCivil;
-
-    // Nacimiento
-    @Column(name = "pais_nacimiento")
-    private String paisNacimiento;
-
-    @Column(name = "departamento_nacimiento")
-    private String departamentoNacimiento;
+    @Column(name = "email", nullable = false, unique = true, length = 150)
+    private String email;
 
     @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;
-
-    @Column(name = "ciudad_nacimiento")
-    private String ciudadNacimiento;
-
-    // Contacto
-    @Column(name = "indicativo_pais")
-    private String indicativoPais;
 
     @Column(name = "numero_celular")
     private String numeroCelular;
@@ -75,15 +46,6 @@ public class Request {
     // Académico
     @Column(name = "primer_programa")
     private String primerPrograma;
-
-    @Column(name = "segundo_programa")
-    private String segundoPrograma;
-
-    @Column(name = "cupos_maximos")
-    private Integer cuposMaximos;
-
-    @Column(name = "cupos_disponibles")
-    private Integer cuposDisponibles;
 
     @Enumerated(EnumType.STRING)
     private EstadoSolicitud estadoSolicitud;
